@@ -29,16 +29,20 @@ const routes = [
 ];
 
 export default function Header() {
+  // const [mounted, setMounted] = useState(false);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
+
+  // if (!mounted) {
+  //   return null;
+  // }
+
+  // wait for theme to be loaded before rendering the header to avoid flash of light theme on dark theme
   const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
   const { theme, setTheme } = useTheme();
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
   return (
     <header className="sm:flex sm:justify-between py-3 px-4 border-b">
       <Container>
